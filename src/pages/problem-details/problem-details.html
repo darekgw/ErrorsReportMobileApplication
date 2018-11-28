@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+	  <h4 style="color: white; display: flex; justify-content: center">WRTC</h4>
+    <ion-title>
+      Problem details (last 7 days)
+    </ion-title>
+	  <ion-buttons end>
+		  <button ion-button (click)="logout()">
+			  <ion-icon name="log-out"></ion-icon>
+		  </button>
+	  </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<ion-list>
+	<ion-item (click)="soapServicesProblems($event, item, number)">
+			<ion-icon name="alert" [ngStyle]="{'color': numberOfSoapServicesProblems > 0 ? 'red' : 'black'}" icon-left></ion-icon>
+		<h2 style="display: inline" >Soap services problems   ({{numberOfSoapServicesProblems}})</h2>
+	</ion-item>
+	<ion-item (click)="restServicesProblems($event, item)">
+		<ion-icon name="alert" [ngStyle]="{'color': numberOfRestServicesProblems > 0 ? 'red' : 'black'}" icon-left></ion-icon>
+		<h2 style="display: inline">Rest services problems   ({{numberOfRestServicesProblems}})</h2>
+	</ion-item>
+	<ion-item>
+		<ion-icon name="alert" [ngStyle]="{'color': numberOfSoapScenarioProblems > 0 ? 'red' : 'black'}" icon-left></ion-icon>
+		<h2 style="display: inline">Soap scenario problems   ({{numberOfSoapScenarioProblems}})</h2>
+	</ion-item>
+	<ion-item>
+		<ion-icon name="alert" [ngStyle]="{'color': numberOfRestScenarioProblems > 0 ? 'red' : 'black'}" icon-left></ion-icon>
+		<h2 style="display: inline">Rest scenario problems   ({{numberOfRestScenarioProblems}})</h2>
+	</ion-item>
+</ion-list>
+</ion-content>

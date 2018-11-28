@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar>
+	  <h4 style="color: white; display: flex; justify-content: center">WRTC</h4>
+    <ion-title>
+      System Information
+    </ion-title>
+	  <ion-buttons end>
+		  <button ion-button (click)="logout()">
+			  <ion-icon name="log-out"></ion-icon>
+		  </button>
+	  </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list no-lines="">
+	  <ion-item>
+		  <h1 class="system-info-title">Memory Usage</h1>
+	  </ion-item>
+	  <ion-item>
+		  <h1 class="system-info">{{memoryUsage}}</h1>
+	  </ion-item>
+	  <hr/>
+	  <ion-item>
+		  <h1 class="system-info-title">CPU Usage</h1>
+	  </ion-item>
+	  <ion-item>
+		  <h1 class="system-info">{{cpuUsage}}</h1>
+	  </ion-item>
+	  <hr/>
+	  <ion-item>
+		  <h1 class="system-info-title">Device position</h1>
+	  </ion-item>
+	  <ion-item *ngIf="latitudeOfDevice && longitudeOfDevice; else noData">
+		  <h1 class="system-info">{{latitudeOfDevice}}</h1>
+		  <h1 class="system-info">{{longitudeOfDevice}}</h1>
+	  </ion-item>
+	  <hr/>
+	  <ion-item>
+		  <h1 class="system-info-title">Watch device position</h1>
+	  </ion-item>
+	  <ion-item *ngIf="currentLatitudeOfDevice && currentLongitudeOfDevice; else noData">
+		  <h1 class="system-info">{{currentLatitudeOfDevice}}</h1>
+		  <h1 class="system-info">{{currentLongitudeOfDevice}}</h1>
+	  </ion-item>
+	  <ng-template #noData>
+		  <h1 class="system-info noData">No data available</h1>
+	  </ng-template>
+	  <hr/>
+
+  </ion-list>
+</ion-content>
+
+

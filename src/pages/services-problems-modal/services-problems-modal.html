@@ -1,0 +1,61 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-title>
+			Problem details
+		</ion-title>
+		<ion-buttons start>
+			<button ion-button (click)="dismiss()">
+				<span ion-text color="white" showWhen="ios,core">Cancel</span>
+				<ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-list no-lines>
+	<ion-item class="cell-title">
+		Service Name
+	</ion-item>
+		<ion-item class="cell-data">
+			{{serviceName}}
+		</ion-item>
+		<ion-item class="cell-title">
+			Url
+		</ion-item>
+		<ion-item class="cell-data">
+			{{url}}
+		</ion-item>
+		<ion-item class="cell-title">
+			Operation Name
+		</ion-item>
+		<ion-item class="cell-data">
+			{{operationName}}
+		</ion-item>
+		<ion-item class="cell-title">
+			Creation Date
+		</ion-item>
+		<ion-item class="cell-data">
+			{{createDate}}
+		</ion-item>
+		<ion-item *ngIf="methodTime" class="cell-title">
+			Method Time
+		</ion-item>
+		<ion-item *ngIf="methodTime" class="cell-data">
+			{{methodTime}}
+		</ion-item>
+		<ion-item class="cell-title">
+			Log
+		</ion-item>
+		<ion-item class="cell-data">
+			{{log}}
+		</ion-item>
+		<ion-item class="cell-title">
+			Error Log
+		</ion-item>
+		<ion-item class="cell-data">
+			{{errorLog}}
+		</ion-item>
+		<!--<button ion-button color="prime" full (click)="dismiss()">Close</button>-->
+	</ion-list>
+</ion-content>

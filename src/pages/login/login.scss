@@ -1,0 +1,83 @@
+page-login {
+
+  .login-content {
+	background: black;
+	//background: #d81b60 ;
+
+	.logo-row {
+	  padding-top: 50px;
+	  padding-bottom: 20px;
+	}
+
+	.login-box {
+	  //background: #C73E46;
+	  background-color: black;
+	  //background-color: #d81b60;
+	  padding: 20px 20px 0px 20px;
+	  margin-top: 30px;
+	}
+
+	ion-row {
+	  align-items: center;
+	  text-align: center;
+	}
+
+	ion-item {
+	  border-radius: 30px !important;
+	  padding-left: 30px !important;
+	  font-size: 0.9em;
+	  margin-bottom: 10px;
+	  border: 1px solid #ffffff;
+	  border-bottom: 0px !important;
+	  box-shadow: none !important;
+	}
+
+	.signup-col {
+	  margin: 0px 16px 0px 16px;
+	  padding-bottom: 20px;
+	}
+
+	.item-inner {
+	  border-bottom-color: #ffffff !important;
+	  box-shadow: none !important;
+	}
+
+	.submit-btn {
+	  background: #d81b60;
+	  //background: #C73E46;
+	  border-radius: 30px !important;
+	  border: 2px solid #ffffff;
+	  color: white;
+	}
+
+	.register-btn {
+	  color: #ffffff;
+	  font-size: 0.8em;
+	}
+
+	.focus-outline button:focus, .focus-outline [ion-button]:focus {
+	  border-color: transparent;
+	  outline: none;
+	  //outline: 1px solid #ec407a;
+	  -webkit-box-shadow: 0 0 8px 1px #ec407a;
+	  box-shadow: 0 0 8px 1px #ec407a;
+	}
+
+  }
+
+  .button-md:hover:not(.disable-hover) {
+	background-color: #ec407a !important;
+  }
+
+  .register-btn.button-md:hover:not(.disable-hover) {
+	background-color: black !important;
+  }
+
+  .focus-outline button:focus, .focus-outline [ion-button]:focus {
+	border-color: transparent;
+	outline: none;
+	//outline: 1px solid #ec407a;
+	-webkit-box-shadow: 0 0 8px 1px #ec407a;
+	box-shadow: 0 0 8px 1px #ec407a;
+  }
+}

@@ -1,0 +1,162 @@
+<ion-header>
+	<ion-navbar>
+		<h4 style="color: white; display: flex; justify-content: center">WRTC</h4>
+		<ion-title>Dashboard</ion-title>
+		<ion-buttons end>
+			<button ion-button (click)="logout()">
+				<ion-icon name="log-out"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+	<div style="display: flex; justify-content: space-around">
+		<button ion-button round color="color_soap" style="float: right" (click)="changeService()" [disabled]="isSoapSelected">Soap</button>
+		<button ion-button round color="color_rest" style="float: right" (click)="changeService()" [disabled]="!isSoapSelected">Rest</button>
+	</div>
+
+	<div style="min-width: 330px">
+		<ion-item>
+			<ion-label>Choose Chart</ion-label>
+			<ion-select [(ngModel)]="chosenChart" (ionChange)="showChosenChart()">
+				<ion-option value="perMinute">Per Minutes</ion-option>
+				<ion-option value="perHour">Per Hour</ion-option>
+				<ion-option value="perDay">Per Day</ion-option>
+				<ion-option value="scenario">Scenarios</ion-option>
+			</ion-select>
+		</ion-item>
+	</div>
+
+	<div class="container">
+		<div *ngIf="(restResponsed || soapResponsed) && chosenChart == 'perDay'" class="col-md-6">
+			<div class="chartStyle">
+				<canvas *ngIf="isSoapSelected"
+						baseChart height="270"
+						[datasets]="lineChartServicesData"
+						[labels]="lineChartServicesLabels"
+						[options]="lineChartOptions"
+						[colors]="soapChartColors"
+						[legend]="lineChartLegend"
+						[chartType]="lineChartType"
+						(chartHover)="chartHovered($event)"
+						(chartClick)="showSoapProblemsByDate($event)"></canvas>
+				<canvas *ngIf="!isSoapSelected"
+						baseChart height="270"
+						[datasets]="lineChartServicesData"
+						[labels]="lineChartServicesLabels"
+						[options]="lineChartOptions"
+						[colors]="restChartColors"
+						[legend]="lineChartLegend"
+						[chartType]="lineChartType"
+						(chartHover)="chartHovered($event)"
+						(chartClick)="showRestProblemsByDate($event)"></canvas>
+			</div>
+			<div class="chartDescription">
+				<h4 style="display: flex; justify-content: center">Services Problems Per Day</h4>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div *ngIf="(restServiceProblemsByHourResponded || soapServiceProblemsByHourResponded) && chosenChart == 'perHour'" class="col-md-6">
+			<div class="chartStyle">
+				<canvas *ngIf="isSoapSelected"
+						baseChart height="270"
+						[datasets]="barChartProblemsPerHoursData"
+						[labels]="barChartProblemsPerHoursLabels"
+						[options]="barChartOptions"
+						[colors]="soapChartColors"
+						[legend]="barChartLegend"
+						[chartType]="barChartType"
+						(chartHover)="chartHovered($event)"
+						(chartClick)="showSoapServicesProblemsByHour($event)">
+				</canvas>
+				<canvas *ngIf="!isSoapSelected"
+						baseChart height="270"
+						[datasets]="barChartProblemsPerHoursData"
+						[labels]="barChartProblemsPerHoursLabels"
+						[options]="barChartOptions"
+						[colors]="restChartColors"
+						[legend]="barChartLegend"
+						[chartType]="barChartType"
+						(chartHover)="chartHovered($event)"
+						(chartClick)="showRestServicesProblemsByHour($event)">
+				</canvas>
+			</div>
+			<div class="chartDescription">
+				<h4 style="display: flex; justify-content: center; margin-top: 5px; margin-bottom: 5px">Services Problems Per Hour</h4>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div *ngIf="(restServiceProblemsPer5MinutesResponded || soapServiceProblemsPer5MinutesResponded) && chosenChart == 'perMinute'" class="col-md-6">
+			<div class="chartStyle">
+				<canvas *ngIf="isSoapSelected"
+						baseChart height="270"
+						[datasets]="barChartProblemsPer5MinutesData"
+						[labels]="barChartProblemsPer5MinutesLabels"
+						[options]="barChartOptions"
+						[colors]="soapChartColors"
+						[legend]="barChartLegend"
+						[chartType]="barChartType"
+						(chartHover)="chartHovered($event)"
+						(chartClick)="showSoapProblemsBy5MinutesInterval($event)">
+				</canvas>
+				<canvas *ngIf="!isSoapSelected"
+						baseChart height="270"
+						[datasets]="barChartProblemsPer5MinutesData"
+						[labels]="barChartProblemsPer5MinutesLabels"
+						[options]="barChartOptions"
+						[colors]="restChartColors"
+						[legend]="barChartLegend"
+						[chartType]="barChartType"
+						(chartHover)="chartHovered($event)"
+						(chartClick)="showRestProblemsBy5MinutesInterval($event)">
+				</canvas>
+			</div>
+			<div class="chartDescription">
+				<h4 style="display: flex; justify-content: center">Services Problems Per Minute</h4>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div *ngIf="(soapScenarioResponsed || restScenarioResponsed) && chosenChart == 'scenario'" class="col-md-6">
+			<div class="chartStyle">
+				<canvas *ngIf="isSoapSelected"
+						baseChart height="270"
+						[datasets]="lineChartScenarioData"
+						[labels]="lineChartScenarioLabels"
+						[options]="lineChartOptions"
+						[colors]="soapChartColors"
+						[legend]="lineChartLegend"
+						[chartType]="lineChartType"
+						(chartHover)="chartHovered($event)"
+						(chartClick)="chartClicked($event)">
+				</canvas>
+				<canvas *ngIf="!isSoapSelected"
+						baseChart height="270"
+						[datasets]="lineChartScenarioData"
+						[labels]="lineChartScenarioLabels"
+						[options]="lineChartOptions"
+						[colors]="restChartColors"
+						[legend]="lineChartLegend"
+						[chartType]="lineChartType"
+						(chartHover)="chartHovered($event)"
+						(chartClick)="chartClicked($event)">
+				</canvas>
+			</div>
+			<div class="chartDescription">
+				<h4 style="display: flex; justify-content: center">Scenario Problems Per Day</h4>
+			</div>
+		</div>
+		<div style="position: relative">
+			<button ion-button round color="color_rest" style="float: right" (click)="refreshData()">Update</button>
+		</div>
+	</div>
+
+</ion-content>
+

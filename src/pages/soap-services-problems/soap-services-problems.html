@@ -1,0 +1,23 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Soap Services Problems</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<div *ngIf="data">
+		<ngx-datatable style="min-width: 340px"
+					   [sortType]="'multi'"
+					   [headerHeight]="50"
+					   [footerHeight]="50"
+					   [rowHeight]="auto"
+					   [rows]="rows"
+					   [columns]="columns"
+					   [columnMode]="'force'"
+					   [limit]="8"
+					   [selected]="selected"
+					   [selectionType]="'single'"
+					   (select)="openModal(selected)">
+		</ngx-datatable>
+	</div>
+</ion-content>
